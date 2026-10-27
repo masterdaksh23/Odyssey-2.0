@@ -13,6 +13,28 @@ const mockAlerts = [
     { type: 'Crop Health', msg: 'Low NDVI detected in Haryana Farm 2 - Field B.', severity: 'medium' }
 ];
 
+let currentTasks = [];
+
+function applyPriorityFilter(tasks) {
+    const filter = document.getElementById('priorityFilter');
+    const selected = filter ? filter.value : 'all';
+    if (selected === 'high') {
+        return tasks.filter(t => t.priority >= 8);
+    }
+    if (selected === 'med') {
+        return tasks.filter(t => t.priority >= 6 && t.priority < 8);
+    }
+    if (selected === 'low') {
+        return tasks.filter(t => t.priority < 6);
+    }
+    return tasks;
+}
+
+function renderFilteredTasks() {
+    const filtered = applyPriorityFilter(currentTasks);
+    renderTasks(filtered);
+}
+
 async function init() {
     let tasks = mockTasks;
     let alerts = mockAlerts;
@@ -28,9 +50,17 @@ async function init() {
         console.log('Using mock data (Backend offline or CORS issue)');
     }
 
-    renderTasks(tasks);
+    currentTasks = tasks;
+    renderFilteredTasks();
     renderAlerts(alerts);
     initChart();
+
+    const priorityFilter = document.getElementById('priorityFilter');
+    if (priorityFilter) {
+        priorityFilter.addEventListener('change', () => {
+            renderFilteredTasks();
+        });
+    }
 
     document.getElementById('simRainBtn').addEventListener('click', async () => {
         const btn = document.getElementById('simRainBtn');
@@ -42,10 +72,10 @@ async function init() {
         } catch(e) {} // Ignore if backend is down
         
         // Visually update tasks for demo
-        tasks[0].status = 'postponed';
-        tasks[0].replanned = true;
-        tasks[0].time = 'Tomorrow 08:00 AM';
-        renderTasks(tasks);
+        currentTasks[0].status = 'postponed';
+        currentTasks[0].replanned = true;
+        currentTasks[0].time = 'Tomorrow 08:00 AM';
+        renderFilteredTasks();
         
         alerts.unshift({ type: 'System', msg: 'Schedule automatically replanned due to rain forecast.', severity: 'high' });
         renderAlerts(alerts);
@@ -57,6 +87,13 @@ async function init() {
 
 function renderTasks(tasks) {
     const container = document.getElementById('taskList');
+    if (!tasks || tasks.length === 0) {
+        container.innerHTML = `
+        <div class="glass rounded-lg p-6 text-center text-gray-400">
+            No tasks found matching the selected priority filter.
+        </div>`;
+        return;
+    }
     container.innerHTML = tasks.map(t => {
         const pClass = t.priority >= 8 ? 'priority-high' : t.priority >= 6 ? 'priority-med' : 'priority-low';
         const pColor = t.priority >= 8 ? 'text-red-400 bg-red-500/10' : t.priority >= 6 ? 'text-yellow-400 bg-yellow-500/10' : 'text-emerald-400 bg-emerald-500/10';
