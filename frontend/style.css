@@ -1,0 +1,449 @@
+/* ==========================================================================
+   AgriPilot AI - Task Cards Stylesheet
+   Features:
+   - Smooth hover animations and elevation transitions
+   - Priority border colors (Low, Medium, High, Urgent & 1-10 numerical scale)
+   - Dark mode support & responsive layout
+   - Accessibility & prefers-reduced-motion optimizations
+   ========================================================================== */
+
+/* Design Tokens & CSS Variables */
+:root {
+  /* Surface & Base Colors */
+  --task-card-bg: #ffffff;
+  --task-card-bg-hover: #fafafa;
+  --task-card-border: #e2e8f0;
+  --task-card-border-hover: #cbd5e1;
+  --task-card-text-primary: #0f172a;
+  --task-card-text-secondary: #64748b;
+  --task-card-text-muted: #94a3b8;
+
+  /* Priority Palette (Border & Accent Colors) */
+  --priority-low: #10b981;          /* Emerald / Green */
+  --priority-low-bg: rgba(16, 185, 129, 0.08);
+  --priority-low-border: #10b981;
+  --priority-low-glow: rgba(16, 185, 129, 0.25);
+
+  --priority-medium: #f59e0b;       /* Amber / Yellow */
+  --priority-medium-bg: rgba(245, 158, 11, 0.08);
+  --priority-medium-border: #f59e0b;
+  --priority-medium-glow: rgba(245, 158, 11, 0.25);
+
+  --priority-high: #ef4444;         /* Red */
+  --priority-high-bg: rgba(239, 68, 68, 0.08);
+  --priority-high-border: #ef4444;
+  --priority-high-glow: rgba(239, 68, 68, 0.25);
+
+  --priority-urgent: #8b5cf6;       /* Violet / Critical */
+  --priority-urgent-bg: rgba(139, 92, 246, 0.08);
+  --priority-urgent-border: #8b5cf6;
+  --priority-urgent-glow: rgba(139, 92, 246, 0.25);
+
+  --priority-critical: #dc2626;     /* Deep Crimson */
+  --priority-critical-bg: rgba(220, 38, 38, 0.1);
+  --priority-critical-border: #dc2626;
+  --priority-critical-glow: rgba(220, 38, 38, 0.3);
+
+  /* Shadows & Elevations */
+  --task-card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --task-card-shadow-hover: 0 12px 24px -6px rgba(0, 0, 0, 0.1), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+
+  /* Animation Timings */
+  --task-transition-timing: cubic-bezier(0.16, 1, 0.3, 1);
+  --task-transition-duration: 0.28s;
+  --task-card-radius: 12px;
+  --task-border-width: 4px;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --task-card-bg: #1e293b;
+    --task-card-bg-hover: #243248;
+    --task-card-border: #334155;
+    --task-card-border-hover: #475569;
+    --task-card-text-primary: #f8fafc;
+    --task-card-text-secondary: #94a3b8;
+    --task-card-text-muted: #64748b;
+
+    --task-card-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    --task-card-shadow-hover: 0 14px 28px -6px rgba(0, 0, 0, 0.5), 0 6px 12px -2px rgba(0, 0, 0, 0.35);
+
+    --priority-low-bg: rgba(16, 185, 129, 0.15);
+    --priority-medium-bg: rgba(245, 158, 11, 0.15);
+    --priority-high-bg: rgba(239, 68, 68, 0.18);
+    --priority-urgent-bg: rgba(139, 92, 246, 0.18);
+    --priority-critical-bg: rgba(220, 38, 38, 0.2);
+  }
+}
+
+/* Also support explicit .dark class */
+.dark {
+  --task-card-bg: #1e293b;
+  --task-card-bg-hover: #243248;
+  --task-card-border: #334155;
+  --task-card-border-hover: #475569;
+  --task-card-text-primary: #f8fafc;
+  --task-card-text-secondary: #94a3b8;
+  --task-card-text-muted: #64748b;
+
+  --task-card-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  --task-card-shadow-hover: 0 14px 28px -6px rgba(0, 0, 0, 0.5), 0 6px 12px -2px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   Core Task Card Styles
+   ========================================================================== */
+
+.task-card,
+[data-testid="task-card"],
+[data-task-card],
+.task-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  background-color: var(--task-card-bg);
+  border-radius: var(--task-card-radius);
+  border: 1px solid var(--task-card-border);
+  border-left: var(--task-border-width) solid var(--priority-color, var(--task-card-border));
+  box-shadow: var(--task-card-shadow);
+  cursor: pointer;
+  box-sizing: border-box;
+  outline: none;
+  overflow: hidden;
+
+  /* Smooth Transition on All Transformative Properties */
+  transition:
+    transform var(--task-transition-duration) var(--task-transition-timing),
+    box-shadow var(--task-transition-duration) var(--task-transition-timing),
+    border-color var(--task-transition-duration) ease,
+    background-color var(--task-transition-duration) ease,
+    border-left-width var(--task-transition-duration) var(--task-transition-timing);
+  will-change: transform, box-shadow;
+}
+
+/* ==========================================================================
+   Smooth Hover & Interaction Animations
+   ========================================================================== */
+
+.task-card:hover,
+[data-testid="task-card"]:hover,
+[data-task-card]:hover,
+.task-item:hover {
+  transform: translateY(-4px) scale(1.008);
+  background-color: var(--task-card-bg-hover);
+  border-color: var(--task-card-border-hover);
+  border-left-color: var(--priority-color, var(--task-card-border-hover));
+  border-left-width: 6px;
+  box-shadow:
+    var(--task-card-shadow-hover),
+    0 0 16px -2px var(--priority-glow, rgba(0, 0, 0, 0.05));
+}
+
+.task-card:focus-visible,
+[data-testid="task-card"]:focus-visible,
+.task-item:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--priority-color, #3b82f6);
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.25),
+    var(--task-card-shadow-hover);
+}
+
+.task-card:active,
+[data-testid="task-card"]:active,
+.task-item:active {
+  transform: translateY(-1px) scale(0.996);
+  transition-duration: 0.1s;
+}
+
+/* Subtle Shimmer Effect on Card Hover */
+.task-card::before,
+[data-testid="task-card"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.task-card:hover::before,
+[data-testid="task-card"]:hover::before {
+  transform: translateX(200%);
+}
+
+/* ==========================================================================
+   Priority Border Colors & Levels
+   ========================================================================== */
+
+/* --- Low Priority (1-3) --- */
+.task-card.priority-low,
+.task-card.low,
+.task-card--low,
+.priority-low,
+[data-priority="low"],
+.task-card.priority-1,
+.task-card.priority-2,
+.task-card.priority-3,
+[data-priority="1"],
+[data-priority="2"],
+[data-priority="3"] {
+  --priority-color: var(--priority-low);
+  --priority-border: var(--priority-low-border);
+  --priority-glow: var(--priority-low-glow);
+  --priority-bg-badge: var(--priority-low-bg);
+  border-left-color: var(--priority-low);
+}
+
+.task-card.priority-low:hover,
+.task-card.low:hover,
+.priority-low:hover,
+[data-priority="low"]:hover {
+  border-left-color: var(--priority-low);
+}
+
+/* --- Medium Priority (4-6 / default) --- */
+.task-card.priority-medium,
+.task-card.medium,
+.task-card--medium,
+.priority-medium,
+[data-priority="medium"],
+.task-card.priority-4,
+.task-card.priority-5,
+.task-card.priority-6,
+[data-priority="4"],
+[data-priority="5"],
+[data-priority="6"] {
+  --priority-color: var(--priority-medium);
+  --priority-border: var(--priority-medium-border);
+  --priority-glow: var(--priority-medium-glow);
+  --priority-bg-badge: var(--priority-medium-bg);
+  border-left-color: var(--priority-medium);
+}
+
+.task-card.priority-medium:hover,
+.task-card.medium:hover,
+.priority-medium:hover,
+[data-priority="medium"]:hover {
+  border-left-color: var(--priority-medium);
+}
+
+/* --- High Priority (7-8) --- */
+.task-card.priority-high,
+.task-card.high,
+.task-card--high,
+.priority-high,
+[data-priority="high"],
+.task-card.priority-7,
+.task-card.priority-8,
+[data-priority="7"],
+[data-priority="8"] {
+  --priority-color: var(--priority-high);
+  --priority-border: var(--priority-high-border);
+  --priority-glow: var(--priority-high-glow);
+  --priority-bg-badge: var(--priority-high-bg);
+  border-left-color: var(--priority-high);
+}
+
+.task-card.priority-high:hover,
+.task-card.high:hover,
+.priority-high:hover,
+[data-priority="high"]:hover {
+  border-left-color: var(--priority-high);
+}
+
+/* --- Urgent / Critical Priority (9-10) --- */
+.task-card.priority-urgent,
+.task-card.urgent,
+.task-card--urgent,
+.priority-urgent,
+[data-priority="urgent"],
+.task-card.priority-9,
+[data-priority="9"] {
+  --priority-color: var(--priority-urgent);
+  --priority-border: var(--priority-urgent-border);
+  --priority-glow: var(--priority-urgent-glow);
+  --priority-bg-badge: var(--priority-urgent-bg);
+  border-left-color: var(--priority-urgent);
+}
+
+.task-card.priority-critical,
+.task-card.critical,
+.task-card--critical,
+.priority-critical,
+[data-priority="critical"],
+.task-card.priority-10,
+[data-priority="10"] {
+  --priority-color: var(--priority-critical);
+  --priority-border: var(--priority-critical-border);
+  --priority-glow: var(--priority-critical-glow);
+  --priority-bg-badge: var(--priority-critical-bg);
+  border-left-color: var(--priority-critical);
+}
+
+.task-card.priority-urgent:hover,
+.task-card.urgent:hover,
+[data-priority="urgent"]:hover,
+.task-card.priority-critical:hover,
+.task-card.critical:hover,
+[data-priority="critical"]:hover {
+  border-left-color: var(--priority-color);
+}
+
+/* Full border priority variation (if requested or configured) */
+.task-card.border-full-priority {
+  border-color: var(--priority-color, var(--task-card-border));
+}
+
+.task-card.border-full-priority:hover {
+  border-color: var(--priority-color, var(--task-card-border-hover));
+}
+
+/* ==========================================================================
+   Task Card Inner Structure & Typography
+   ========================================================================== */
+
+.task-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.task-card-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--task-card-text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  transition: color var(--task-transition-duration) ease;
+}
+
+.task-card:hover .task-card-title {
+  color: var(--priority-color, var(--task-card-text-primary));
+}
+
+.task-card-description {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--task-card-text-secondary);
+  line-height: 1.45;
+}
+
+.task-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  font-size: 0.82rem;
+  color: var(--task-card-text-muted);
+}
+
+.dark .task-card-footer {
+  border-top-color: rgba(51, 65, 85, 0.6);
+}
+
+.task-card-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Priority Badges & Indicators
+   ========================================================================== */
+
+.priority-badge,
+.task-priority-indicator,
+.priority-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--priority-bg-badge, rgba(148, 163, 184, 0.12));
+  color: var(--priority-color, var(--task-card-text-secondary));
+  border: 1px solid currentColor;
+  transition: all var(--task-transition-duration) ease;
+}
+
+.task-card:hover .priority-badge,
+.task-card:hover .priority-pill {
+  transform: scale(1.04);
+}
+
+/* Priority dot indicator */
+.priority-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--priority-color, #94a3b8);
+  box-shadow: 0 0 6px var(--priority-glow, transparent);
+  transition: transform var(--task-transition-duration) ease;
+}
+
+.task-card:hover .priority-dot {
+  transform: scale(1.25);
+}
+
+/* ==========================================================================
+   Task Status Variations
+   ========================================================================== */
+
+.task-card.status-completed,
+.task-card.completed {
+  opacity: 0.72;
+}
+
+.task-card.status-completed:hover,
+.task-card.completed:hover {
+  opacity: 0.95;
+}
+
+.task-card.status-completed .task-card-title {
+  text-decoration: line-through;
+}
+
+/* ==========================================================================
+   Accessibility: Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .task-card,
+  [data-testid="task-card"],
+  [data-task-card],
+  .task-item,
+  .task-card::before,
+  .priority-badge,
+  .priority-dot {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .task-card:hover,
+  [data-testid="task-card"]:hover,
+  .task-item:hover {
+    transform: none !important;
+  }
+}
