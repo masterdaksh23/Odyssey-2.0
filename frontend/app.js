@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000'; // Change to your Render URL when deployed
+const API_URL = "https://agripilot-backend.onrender.com";
 
 // Mock Data Fallback (Ensures UI looks good even if backend is down)
 const mockTasks = [
