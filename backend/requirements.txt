@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+psycopg2-binary
+python-dotenv
+pydantic
+google-ortools
+langgraph
+langchain
+httpx
+pandas
