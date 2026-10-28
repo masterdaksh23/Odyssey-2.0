@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPilot AI Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%); min-height: 100vh; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .task-card { transition: all 0.3s ease; }
+        .task-card:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.08); }
+        .priority-high { border-left: 4px solid #ef4444; }
+        .priority-med { border-left: 4px solid #f59e0b; }
+        .priority-low { border-left: 4px solid #10b981; }
+    </style>
+</head>
+<body class="p-6">
+    <header class="flex justify-between items-center mb-8 glass rounded-xl p-4">
+        <div>
+            <h1 class="text-3xl font-bold text-emerald-400"> AgriPilot AI</h1>
+            <p class="text-gray-400 text-sm">Autonomous Farm Operations System</p>
+        </div>
+        <button id="simRainBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition">
+            🌧️ Simulate Rain Event
+        </button>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Task Schedule -->
+        <div class="lg:col-span-2 glass rounded-xl p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <h2 class="text-xl font-semibold text-emerald-300">Today's Schedule</h2>
+                <div class="flex items-center gap-2">
+                    <label for="priorityFilter" class="text-sm text-gray-300">Priority Filter:</label>
+                    <select id="priorityFilter" class="bg-gray-800/90 border border-white/20 text-white text-sm rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer">
+                        <option value="all">All Priorities</option>
+                        <option value="high">High (P8+)</option>
+                        <option value="med">Medium (P6 - P7)</option>
+                        <option value="low">Low (P1 - P5)</option>
+                    </select>
+                </div>
+            </div>
+            <div id="taskList" class="space-y-3 max-h-[600px] overflow-y-auto pr-2"></div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-6">
+            <!-- Alerts -->
+            <div class="glass rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-4 text-red-300">Active Alerts</h2>
+                <div id="alertList" class="space-y-2"></div>
+            </div>
+
+            <!-- NDVI Chart -->
+            <div class="glass rounded-xl p-6">
+                <h2 class="text-xl font-semibold mb-4 text-emerald-300">Crop Health (NDVI)</h2>
+                <canvas id="ndviChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

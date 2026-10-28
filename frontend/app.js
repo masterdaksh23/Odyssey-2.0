@@ -13,7 +13,8 @@ const mockAlerts = [
     { type: 'Crop Health', msg: 'Low NDVI detected in Haryana Farm 2 - Field B.', severity: 'medium' }
 ];
 
-let currentTasks = [];
+let currentTasks = [...mockTasks];
+let ndviChartInstance = null;
 
 function applyPriorityFilter(tasks) {
     const filter = document.getElementById('priorityFilter');
@@ -35,58 +36,9 @@ function renderFilteredTasks() {
     renderTasks(filtered);
 }
 
-async function init() {
-    let tasks = mockTasks;
-    let alerts = mockAlerts;
-
-    try {
-        const [taskRes, alertRes] = await Promise.all([
-            fetch(`${API_URL}/api/tasks`),
-            fetch(`${API_URL}/api/alerts`)
-        ]);
-        if (taskRes.ok) tasks = await taskRes.json();
-        if (alertRes.ok) alerts = await alertRes.json();
-    } catch (e) {
-        console.log('Using mock data (Backend offline or CORS issue)');
-    }
-
-    currentTasks = tasks;
-    renderFilteredTasks();
-    renderAlerts(alerts);
-    initChart();
-
-    const priorityFilter = document.getElementById('priorityFilter');
-    if (priorityFilter) {
-        priorityFilter.addEventListener('change', () => {
-            renderFilteredTasks();
-        });
-    }
-
-    document.getElementById('simRainBtn').addEventListener('click', async () => {
-        const btn = document.getElementById('simRainBtn');
-        btn.innerText = '⏳ Replanning...';
-        btn.disabled = true;
-        
-        try {
-            await fetch(`${API_URL}/api/replan`, { method: 'POST', body: JSON.stringify({farm_id: '1'}) });
-        } catch(e) {} // Ignore if backend is down
-        
-        // Visually update tasks for demo
-        currentTasks[0].status = 'postponed';
-        currentTasks[0].replanned = true;
-        currentTasks[0].time = 'Tomorrow 08:00 AM';
-        renderFilteredTasks();
-        
-        alerts.unshift({ type: 'System', msg: 'Schedule automatically replanned due to rain forecast.', severity: 'high' });
-        renderAlerts(alerts);
-        
-        btn.innerText = '🌧️ Simulate Rain Event';
-        btn.disabled = false;
-    });
-}
-
 function renderTasks(tasks) {
     const container = document.getElementById('taskList');
+    if (!container) return;
     if (!tasks || tasks.length === 0) {
         container.innerHTML = `
         <div class="glass rounded-lg p-6 text-center text-gray-400">
@@ -120,6 +72,7 @@ function renderTasks(tasks) {
 
 function renderAlerts(alerts) {
     const container = document.getElementById('alertList');
+    if (!container) return;
     container.innerHTML = alerts.map(a => {
         const color = a.severity === 'high' ? 'border-red-500 bg-red-500/10' : 'border-yellow-500 bg-yellow-500/10';
         return `<div class="p-3 rounded border-l-4 ${color}"><p class="text-xs font-bold text-gray-300">${a.type}</p><p class="text-sm text-white">${a.msg}</p></div>`;
@@ -127,29 +80,114 @@ function renderAlerts(alerts) {
 }
 
 function initChart() {
-    const ctx = document.getElementById('ndviChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-            datasets: [{
-                label: 'NDVI',
-                data: [0.45, 0.52, 0.61, 0.68, 0.72, 0.75],
-                borderColor: '#10b981',
-                backgroundColor: 'rgba(16, 185, 129, 0.2)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { labels: { color: 'white' } } },
-            scales: {
-                x: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-                y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
-            }
+    try {
+        if (typeof Chart === 'undefined') {
+            console.warn('Chart.js not loaded yet');
+            return;
         }
-    });
+        const canvas = document.getElementById('ndviChart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (ndviChartInstance) {
+            ndviChartInstance.destroy();
+        }
+        ndviChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                datasets: [{
+                    label: 'NDVI',
+                    data: [0.45, 0.52, 0.61, 0.68, 0.72, 0.75],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { labels: { color: 'white' } } },
+                scales: {
+                    x: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                    y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+            }
+        });
+    } catch (err) {
+        console.error('Error initializing NDVI chart:', err);
+    }
 }
 
-init();
+async function init() {
+    // 1. Immediately render fallback data so dashboard is NEVER blank
+    currentTasks = [...mockTasks];
+    renderFilteredTasks();
+    renderAlerts(mockAlerts);
+    initChart();
+
+    const priorityFilter = document.getElementById('priorityFilter');
+    if (priorityFilter) {
+        priorityFilter.addEventListener('change', () => {
+            renderFilteredTasks();
+        });
+    }
+
+    const simBtn = document.getElementById('simRainBtn');
+    if (simBtn) {
+        simBtn.addEventListener('click', async () => {
+            simBtn.innerText = '⏳ Replanning...';
+            simBtn.disabled = true;
+            
+            try {
+                await fetch(`${API_URL}/api/replan`, { method: 'POST', body: JSON.stringify({farm_id: '1'}) });
+            } catch(e) {} // Ignore if backend is down
+            
+            // Visually update tasks for demo
+            if (currentTasks.length > 0) {
+                currentTasks[0].status = 'postponed';
+                currentTasks[0].replanned = true;
+                currentTasks[0].time = 'Tomorrow 08:00 AM';
+                renderFilteredTasks();
+            }
+            
+            mockAlerts.unshift({ type: 'System', msg: 'Schedule automatically replanned due to rain forecast.', severity: 'high' });
+            renderAlerts(mockAlerts);
+            
+            simBtn.innerText = '🌧️ Simulate Rain Event';
+            simBtn.disabled = false;
+        });
+    }
+
+    // 2. Fetch live data with a timeout so cold starts don't hang the page
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        const [taskRes, alertRes] = await Promise.all([
+            fetch(`${API_URL}/api/tasks`, { signal: controller.signal }),
+            fetch(`${API_URL}/api/alerts`, { signal: controller.signal })
+        ]);
+        clearTimeout(timeoutId);
+
+        let updated = false;
+        if (taskRes.ok) {
+            currentTasks = await taskRes.json();
+            updated = true;
+        }
+        if (alertRes.ok) {
+            const liveAlerts = await alertRes.json();
+            renderAlerts(liveAlerts);
+        }
+        if (updated) {
+            renderFilteredTasks();
+        }
+    } catch (e) {
+        console.log('Using mock data (Backend offline, cold start, or CORS issue):', e);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
