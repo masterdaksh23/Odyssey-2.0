@@ -1,413 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriPilot AI | Autonomous Farm Operations System</title>
-    <meta name="description" content="AgriPilot AI combines technology, data, and sustainable practices to help farmers increase productivity and streamline operations.">
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGRO USE - Smart Farming & Autonomous Agriculture</title>
+  <meta name="description" content="Agro Use combines technology, data, and sustainable practices to help farmers increase productivity, profitability, and build a better future.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navigation Header -->
-    <header class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-brand">
-                <span class="brand-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
-                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
-                    </svg>
-                </span>
-                <span class="brand-text">AgriPilot <span class="brand-accent">AI</span></span>
-            </a>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+      </svg>
+      <div class="brand-text">
+        <h1>AGRO USE</h1>
+        <span>Smart Farming</span>
+      </div>
+    </div>
 
-            <nav class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#solutions" class="nav-link">Solutions</a>
-                <a href="#technology" class="nav-link">Technology</a>
-                <a href="#stats" class="nav-link">Impact</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
+    <ul class="nav-links">
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="#insights">Resources</a></li>
+      <li><a href="#technology">About Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
 
-            <div class="nav-actions">
-                <button id="getStartedBtn" class="btn btn-primary btn-sm">Get Started</button>
-            </div>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="#solutions" id="navGetStartedBtn" class="btn-primary">Get Started &rarr;</a>
+      <button id="themeToggleBtn" aria-label="Toggle Theme" style="width: 44px; height: 44px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--accent-lime); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>&#127793; SMART SOLUTIONS FOR A BETTER TOMORROW</span>
+      </div>
+      <h1>Nurturing Nature.<br><span class="highlight">Empowering Farmers.</span></h1>
+      <p>Agro Use combines technology, data, and sustainable practices to help farmers increase productivity, profitability, and build a better future.</p>
+      <div class="hero-buttons">
+        <a href="#solutions" id="exploreSolutionsBtn" class="btn-primary">Explore Solutions &rarr;</a>
+        <a href="#technology" id="watchStoryBtn" class="btn-outline">
+          <span style="font-size: 13px;">&#9654;</span>
+          Watch Story
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div>
+        <div class="stat-value">&#128101; 25K+</div>
+        <div class="stat-label">Happy Farmers</div>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+        </svg>
+      </div>
+      <div>
+        <div class="stat-value">&#127793; 1.2M+</div>
+        <div class="stat-label">Acres Managed</div>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+          <line x1="2" y1="20" x2="22" y2="20"/>
+        </svg>
+      </div>
+      <div>
+        <div class="stat-value">&#128202; 40%</div>
+        <div class="stat-label">Average Yield Increase</div>
+      </div>
+    </div>
+
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="stat-value">&#128167; 30%</div>
+        <div class="stat-label">Water Saved</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE FARM INSIGHTS CARD -->
+  <div style="margin: 48px 0;" id="insights">
+    <div class="insights-card">
+      <div class="insights-header">
+        <h3><span>&#127793;</span> Live Farm Insights</h3>
+        <a href="#technology" class="view-all">View All &rarr;</a>
+      </div>
+
+      <!-- Row 1: Soil Moisture -->
+      <div class="insight-row">
+        <div class="insight-row-header">
+          <div>
+            <span class="insight-label">Soil Moisture</span>
+            <span class="insight-sublabel"> &bull; Optimal</span>
+          </div>
+          <span class="insight-value" id="insightMoistureVal">68%</span>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                <span>Next-Gen Autonomous AgTech</span>
-            </div>
-            <h1 class="hero-title">Nurturing Nature.<br><span class="hero-title-highlight">Empowering Farmers.</span></h1>
-            <p class="hero-subtext">AgriPilot AI combines technology, data, and sustainable practices to help farmers increase productivity, conserve precious water, and optimize crop yields.</p>
-            <div class="hero-buttons">
-                <a href="#solutions" id="exploreSolutionsBtn" class="btn btn-primary btn-lg">Explore Solutions</a>
-                <a href="#technology" id="watchStoryBtn" class="btn btn-outline btn-lg">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <polygon points="5 3 19 12 5 21 5 3"/>
-                    </svg>
-                    Watch Story
-                </a>
-            </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="insightMoistureBar" style="width: 68%;"></div>
         </div>
-    </section>
+      </div>
 
-    <!-- Stats Bar -->
-    <section class="stats-section" id="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon-wrapper">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                    <div class="stat-info">
-                        <h3 class="stat-number">25K+</h3>
-                        <p class="stat-label">Happy Farmers</p>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon-wrapper">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/>
-                            <path d="M3 9h18"/>
-                            <path d="M9 21V9"/>
-                        </svg>
-                    </div>
-                    <div class="stat-info">
-                        <h3 class="stat-number">1.2M+</h3>
-                        <p class="stat-label">Acres Managed</p>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon-wrapper">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                            <polyline points="17 6 23 6 23 12"/>
-                        </svg>
-                    </div>
-                    <div class="stat-info">
-                        <h3 class="stat-number">40%</h3>
-                        <p class="stat-label">Yield Increase</p>
-                    </div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon-wrapper">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-                        </svg>
-                    </div>
-                    <div class="stat-info">
-                        <h3 class="stat-number">30%</h3>
-                        <p class="stat-label">Water Saved</p>
-                    </div>
-                </div>
-            </div>
+      <!-- Row 2: Temperature -->
+      <div class="insight-row">
+        <div class="insight-row-header">
+          <div>
+            <span class="insight-label">Temperature</span>
+            <span class="insight-sublabel"> &bull; Field Average</span>
+          </div>
+          <span class="insight-value" id="insightTempVal">24°C</span>
         </div>
-    </section>
-
-    <!-- What We Do Section -->
-    <section class="section solutions-section" id="solutions">
-        <div class="container">
-            <div class="section-header text-center">
-                <span class="section-tag">What We Do</span>
-                <h2 class="section-title">Intelligent Solutions for Every Farm</h2>
-                <p class="section-description">From planting through harvest, our integrated intelligent tools empower agricultural operators with real-time analytics and predictive automation.</p>
-            </div>
-
-            <div class="solutions-grid">
-                <!-- Card 1: Crop Management -->
-                <div class="solution-card">
-                    <div class="card-icon-box icon-leaf">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
-                            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Crop Management</h3>
-                    <p class="card-text">AI-driven crop lifecycle tracking from sowing to harvest. Get daily crop health index, anomaly detection, and harvest readiness alerts.</p>
-                    <a href="#technology" class="card-link">
-                        Learn more
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Card 2: Irrigation Intelligence -->
-                <div class="solution-card">
-                    <div class="card-icon-box icon-droplet">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Irrigation Intelligence</h3>
-                    <p class="card-text">Smart scheduling connected with localized soil moisture sensors and hyperlocal rainfall forecasts to deliver precise watering volumes.</p>
-                    <a href="#technology" class="card-link">
-                        Learn more
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Card 3: Soil & Field Health -->
-                <div class="solution-card">
-                    <div class="card-icon-box icon-sprout">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7 20h10"/>
-                            <path d="M10 20c5.5-2.5.8-6.4 3-10"/>
-                            <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/>
-                            <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Soil & Field Health</h3>
-                    <p class="card-text">Continuous NDVI satellite tracking and nutrient mapping detect deficiencies before visual symptoms appear in the canopy.</p>
-                    <a href="#technology" class="card-link">
-                        Learn more
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-
-                <!-- Card 4: Market & Price Insights -->
-                <div class="solution-card">
-                    <div class="card-icon-box icon-chart">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="20" x2="18" y2="10"/>
-                            <line x1="12" y1="20" x2="12" y2="4"/>
-                            <line x1="6" y1="20" x2="6" y2="14"/>
-                            <line x1="2" y1="20" x2="22" y2="20"/>
-                        </svg>
-                    </div>
-                    <h3 class="card-title">Market & Price Insights</h3>
-                    <p class="card-text">Direct integration with wholesale commodity market data to recommend optimum harvest timing and maximum profit margins.</p>
-                    <a href="#technology" class="card-link">
-                        Learn more
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="insightTempBar" style="width: 60%;"></div>
         </div>
-    </section>
+      </div>
 
-    <!-- Our Technology Section -->
-    <section class="section tech-section" id="technology">
-        <div class="container">
-            <div class="tech-grid">
-                <!-- Left Column: Content -->
-                <div class="tech-content">
-                    <span class="section-tag">Our Technology</span>
-                    <h2 class="section-title">Data. AI. IoT.<br>Better Together.</h2>
-                    <p class="section-description">AgriPilot harmonizes telemetry from soil probes, satellite imagery, and weather radars into a unified orchestration platform for agronomic precision.</p>
+      <!-- Row 3: Rainfall Chance -->
+      <div class="insight-row">
+        <div class="insight-row-header">
+          <div>
+            <span class="insight-label">Rainfall Chance</span>
+            <span class="insight-sublabel"> &bull; Next 24 Hours</span>
+          </div>
+          <span class="insight-value" id="insightRainVal">10%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="insightRainBar" style="width: 10%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                    <div class="tech-features">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Real-Time Sensor Telemetry</h4>
-                                <p>Instant sync with IoT probes monitoring soil moisture, ambient temperature, and humidity.</p>
-                            </div>
-                        </div>
+  <!-- "WHAT WE DO" SECTION -->
+  <section class="section" id="solutions">
+    <div class="section-label">WHAT WE DO</div>
+    <h2 class="section-title">Intelligent Solutions for Every Farm</h2>
+    <p class="section-subtitle">From soil to sky, we provide end-to-end solutions combining IoT telemetry, satellite data, and machine learning models.</p>
 
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Autonomous AI Recommendations</h4>
-                                <p>Prescriptive actions automatically calculated for nitrogen application, pest treatment, and irrigation.</p>
-                            </div>
-                        </div>
+    <div class="cards-grid">
+      <!-- Card 1: Crop Management -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(163, 230, 53, 0.15); color: #a3e635;">
+          &#127807;
+        </div>
+        <h3>Crop Management</h3>
+        <p>Plan, monitor and manage crops with real-time data and AI-driven insights to maximize quality and yield potential.</p>
+        <div style="margin-top: 24px; color: var(--accent-lime); font-size: 18px; font-weight: 700;">&rarr;</div>
+      </div>
 
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                </svg>
-                            </div>
-                            <div class="feature-text">
-                                <h4>Predictive Rain Replanning</h4>
-                                <p>Dynamic schedule reallocation when weather forecasts detect heavy rainfall or wind storms.</p>
-                            </div>
-                        </div>
-                    </div>
+      <!-- Card 2: Irrigation Intelligence -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(14, 165, 233, 0.15); color: #38bdf8;">
+          &#128167;
+        </div>
+        <h3>Irrigation Intelligence</h3>
+        <p>Smart irrigation scheduling to save water and ensure optimal crop health through automated precision delivery.</p>
+        <div style="margin-top: 24px; color: var(--accent-lime); font-size: 18px; font-weight: 700;">&rarr;</div>
+      </div>
+
+      <!-- Card 3: Soil & Field Health -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">
+          &#127793;
+        </div>
+        <h3>Soil & Field Health</h3>
+        <p>Analyze soil health, get recommendations and improve productivity with multi-spectral satellite imagery and sensor maps.</p>
+        <div style="margin-top: 24px; color: var(--accent-lime); font-size: 18px; font-weight: 700;">&rarr;</div>
+      </div>
+
+      <!-- Card 4: Market & Price Insights -->
+      <div class="feature-card">
+        <div class="feature-icon" style="background: rgba(168, 85, 247, 0.15); color: #c084fc;">
+          &#128202;
+        </div>
+        <h3>Market & Price Insights</h3>
+        <p>Real-time market data and price forecasts to help you sell smarter, optimize inventory, and capture peak commodity value.</p>
+        <div style="margin-top: 24px; color: var(--accent-lime); font-size: 18px; font-weight: 700;">&rarr;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- "OUR TECHNOLOGY" SECTION -->
+  <section class="section" id="technology">
+    <div class="tech-section">
+      <!-- LEFT COLUMN -->
+      <div>
+        <div class="section-label">OUR TECHNOLOGY</div>
+        <h2 class="section-title">Data. AI. IoT.<br>Better Together.</h2>
+        <p class="section-subtitle">We bridge physical farm telemetry with state-of-the-art neural algorithms to deliver autonomous agricultural orchestration at scale.</p>
+
+        <ul class="feature-list">
+          <li>Real-time field monitoring</li>
+          <li>AI-powered recommendations</li>
+          <li>IoT sensors & satellite data</li>
+          <li>Easy to use on web & mobile</li>
+        </ul>
+
+        <a href="#contact" class="btn-primary" style="margin-top: 8px;">Learn More &rarr;</a>
+      </div>
+
+      <!-- RIGHT COLUMN: FARM OVERVIEW DASHBOARD WIDGET -->
+      <div class="dashboard-widget">
+        <div class="widget-header">
+          <span>&#127807;</span>
+          <span>Farm Overview</span>
+        </div>
+
+        <div class="widget-grid">
+          <!-- Top-left: Total Fields -->
+          <div class="widget-card">
+            <div class="widget-card-label">Total Fields</div>
+            <div class="widget-card-value" id="totalFields">12</div>
+          </div>
+
+          <!-- Top-middle: Active Crops -->
+          <div class="widget-card">
+            <div class="widget-card-label">Active Crops</div>
+            <div class="widget-card-value" id="activeCrops">6</div>
+          </div>
+
+          <!-- Top-right (spans 2 rows): Yield Prediction -->
+          <div class="widget-card yield-card" style="grid-column: span 2;">
+            <div class="widget-card-label">Yield Prediction</div>
+            <div class="widget-card-value" id="yieldPrediction">
+              3.6 <small>ton/ha</small>
+            </div>
+            <div class="widget-card-trend">&#8593; 18% vs last season</div>
+            <!-- Smooth upward trending line chart -->
+            <div class="line-chart">
+              <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#a3e635" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#a3e635" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 0 100 Q 60 85, 120 70 T 240 30 T 300 15 L 300 120 L 0 120 Z" fill="url(#chartGradient)"/>
+                <path d="M 0 100 Q 60 85, 120 70 T 240 30 T 300 15" fill="none" stroke="#a3e635" stroke-width="3" stroke-linecap="round"/>
+                <!-- Dots along curve -->
+                <circle cx="0" cy="100" r="4" fill="#a3e635"/>
+                <circle cx="120" cy="70" r="4" fill="#a3e635"/>
+                <circle cx="240" cy="30" r="4" fill="#a3e635"/>
+                <circle cx="300" cy="15" r="5" fill="#a3e635" stroke="#0a1a0f" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Middle-left: Field Health Circular Progress -->
+          <div class="widget-card">
+            <div class="widget-card-label">Field Health</div>
+            <div class="circular-progress">
+              <svg width="120" height="120">
+                <circle class="bg" cx="60" cy="60" r="50"/>
+                <!-- Circumference = 2 * PI * 50 = 314.159. 85% = 267. 314 - 267 = 47 offset -->
+                <circle id="fieldHealthCircle" class="fill" cx="60" cy="60" r="50" stroke-dasharray="314.159" stroke-dashoffset="47.12"/>
+              </svg>
+              <div class="circular-progress-text">
+                <div class="value" id="fieldHealthVal">85%</div>
+                <div class="label" id="fieldHealthLabel">Good</div>
+              </div>
+            </div>
+            <div class="progress-legend">
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--accent-lime);"></span>
+                <span>Good</span>
+              </div>
+              <div class="legend-item">
+                <span class="legend-dot" style="background: var(--warning);"></span>
+                <span>Warning</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle-right: Recent Activity -->
+          <div class="widget-card">
+            <div class="widget-card-label" style="margin-bottom: 12px;">Recent Activity</div>
+            <ul class="activity-list" id="recentActivityList">
+              <li class="activity-item">
+                <div class="activity-info">
+                  <span class="activity-dot green"></span>
+                  <div>
+                    <div class="activity-name">Irrigation Completed</div>
+                    <div class="activity-field">Field 3</div>
+                  </div>
                 </div>
-
-                <!-- Right Column: Farm Overview Dashboard Widget -->
-                <div class="tech-widget-container">
-                    <div class="dashboard-widget">
-                        <!-- Widget Header -->
-                        <div class="widget-header">
-                            <div>
-                                <span class="widget-badge">LIVE DASHBOARD</span>
-                                <h3 class="widget-title">Farm Overview</h3>
-                            </div>
-                            <div class="widget-status">
-                                <span class="status-indicator"></span>
-                                <span>Operational</span>
-                            </div>
-                        </div>
-
-                        <!-- Top Row Stats -->
-                        <div class="widget-metrics">
-                            <div class="metric-card">
-                                <span class="metric-label">Total Fields</span>
-                                <span class="metric-value" id="totalFields">12</span>
-                            </div>
-                            <div class="metric-card">
-                                <span class="metric-label">Active Crops</span>
-                                <span class="metric-value" id="activeCrops">6</span>
-                            </div>
-                            <div class="metric-card">
-                                <span class="metric-label">Yield Prediction</span>
-                                <span class="metric-value highlight" id="yieldPrediction">3.6 ton/ha</span>
-                            </div>
-                        </div>
-
-                        <!-- Middle Row: Circular Progress Field Health -->
-                        <div class="widget-health-card">
-                            <div class="circular-progress-wrapper">
-                                <svg class="progress-ring" width="110" height="110">
-                                    <circle class="progress-ring-bg" stroke="#e2e8f0" stroke-width="8" fill="transparent" r="46" cx="55" cy="55"/>
-                                    <circle id="healthRing" class="progress-ring-fill" stroke="#10b981" stroke-width="8" stroke-linecap="round" fill="transparent" r="46" cx="55" cy="55"/>
-                                </svg>
-                                <div class="progress-ring-content">
-                                    <span class="progress-percent" id="fieldHealthPercent">85%</span>
-                                    <span class="progress-sub">Optimal</span>
-                                </div>
-                            </div>
-                            <div class="health-meta">
-                                <h4>Field Health Index</h4>
-                                <p>Vegetation density & chlorophyll indices based on latest multispectral imagery.</p>
-                                <div class="health-tag">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="20 6 9 17 4 12"/>
-                                    </svg>
-                                    All 12 parcels in safe vegetative range
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Row: Activity & Weather Grid -->
-                        <div class="widget-bottom-grid">
-                            <!-- Recent Activity Box -->
-                            <div class="activity-box">
-                                <div class="box-title-row">
-                                    <h4 class="box-title">Recent Activity</h4>
-                                    <span class="box-badge">Tasks</span>
-                                </div>
-                                <ul class="activity-list" id="recentActivityList">
-                                    <li class="activity-item">
-                                        <span class="activity-bullet bullet-green"></span>
-                                        <div class="activity-details">
-                                            <span class="activity-name">Irrigation Completed</span>
-                                            <span class="activity-meta">Field 1 • 08:00 AM</span>
-                                        </div>
-                                    </li>
-                                    <li class="activity-item">
-                                        <span class="activity-bullet bullet-amber"></span>
-                                        <div class="activity-details">
-                                            <span class="activity-name">Fertilizer Applied</span>
-                                            <span class="activity-meta">Field 4 • 09:30 AM</span>
-                                        </div>
-                                    </li>
-                                    <li class="activity-item">
-                                        <span class="activity-bullet bullet-blue"></span>
-                                        <div class="activity-details">
-                                            <span class="activity-name">NDVI Satellite Scan</span>
-                                            <span class="activity-meta">All Parcels • 11:15 AM</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Weather Box -->
-                            <div class="weather-box">
-                                <div class="box-title-row">
-                                    <h4 class="box-title">Field Weather</h4>
-                                    <span class="box-badge">Radar</span>
-                                </div>
-                                <div class="weather-content" id="weatherContent">
-                                    <div class="weather-main">
-                                        <div class="weather-icon-cloud">
-                                            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
-                                            </svg>
-                                        </div>
-                                        <div>
-                                            <div class="weather-temp" id="weatherTemp">24°C</div>
-                                            <div class="weather-condition" id="weatherCondition">Partly Cloudy</div>
-                                        </div>
-                                    </div>
-                                    <div class="weather-details" id="weatherDetails">
-                                        <span>Humidity: 62%</span> • <span>Wind: 8 km/h</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class="activity-time">2h ago</div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-info">
+                  <span class="activity-dot orange"></span>
+                  <div>
+                    <div class="activity-name">Fertilizer Applied</div>
+                    <div class="activity-field">Field 6</div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </section>
+                <div class="activity-time">5h ago</div>
+              </li>
+              <li class="activity-item">
+                <div class="activity-info">
+                  <span class="activity-dot red"></span>
+                  <div>
+                    <div class="activity-name">Pest Control Done</div>
+                    <div class="activity-field">Field 2</div>
+                  </div>
+                </div>
+                <div class="activity-time">1d ago</div>
+              </li>
+            </ul>
+          </div>
 
-    <!-- Footer CTA Section -->
-    <section class="footer-cta-section" id="contact">
-        <div class="container text-center">
-            <h2 class="cta-title">Together, let's build a greener and richer future.</h2>
-            <p class="cta-subtitle">Join thousands of modern farm managers who rely on AgriPilot AI to automate daily operations and protect harvest yields.</p>
-            <div class="cta-actions">
-                <button id="ctaJoinBtn" class="btn btn-white btn-lg">Join AgriPilot Today</button>
-            </div>
-        </div>
-    </section>
+          <!-- Bottom: Satellite/aerial farm image with green location pins -->
+          <div class="satellite-image">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Aerial Farm Map" loading="lazy">
+            <div class="location-pin" style="top: 35%; left: 45%;"></div>
+            <div class="location-pin" style="top: 60%; left: 70%;"></div>
+            <div class="location-pin" style="top: 50%; left: 25%;"></div>
+          </div>
 
-    <!-- Footer Bar -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <span class="brand-text">AgriPilot <span class="brand-accent">AI</span></span>
-                <p class="footer-copy">© 2026 AgriPilot AI Inc. Precision agriculture simplified.</p>
+          <!-- Weather Card below image -->
+          <div class="weather-card">
+            <div class="weather-header">
+              <div>
+                <div class="widget-card-label" style="text-transform: uppercase; letter-spacing: 1px;">Weather</div>
+                <div class="weather-temp" id="weatherTemp">24°C</div>
+                <div class="weather-condition" id="weatherCondition">Partly Cloudy</div>
+              </div>
+              <div class="weather-icon">
+                &#9925;
+              </div>
             </div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#solutions">Solutions</a>
-                <a href="#technology">Technology</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </footer>
 
-    <!-- App Script -->
-    <script src="app.js"></script>
+            <div class="weather-details">
+              <div>
+                <div class="weather-detail-label">Wind</div>
+                <div class="weather-detail-value" id="weatherWind">12 km/h</div>
+              </div>
+              <div>
+                <div class="weather-detail-label">Humidity</div>
+                <div class="weather-detail-value" id="weatherHumidity">60%</div>
+              </div>
+              <div>
+                <div class="weather-detail-label">Rainfall</div>
+                <div class="weather-detail-value" id="weatherRainfall">0 mm</div>
+              </div>
+            </div>
+
+            <a href="#technology" class="view-details">View Details &rarr;</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA SECTION -->
+  <section class="footer-cta" id="contact">
+    <div class="footer-cta-image"></div>
+    <div class="footer-cta-content">
+      <div>
+        <h2>Together, let's build a greener and richer future.</h2>
+        <p>Join Agro Use and be part of the movement towards sustainable agriculture.</p>
+      </div>
+      <div class="footer-cta-right">
+        <div class="trusted-by">
+          <div class="avatar-group">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Farmer Avatar 1">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Farmer Avatar 2">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Farmer Avatar 3">
+          </div>
+          <div class="trusted-text">Trusted by farmers across the country</div>
+        </div>
+        <a href="#solutions" id="ctaJoinBtn" class="btn-primary" style="white-space: nowrap;">Join Agro Use Today &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>AGRO USE &copy; 2026. All rights reserved.</div>
+    <div>hello@agrouse.example</div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
